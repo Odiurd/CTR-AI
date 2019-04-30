@@ -243,7 +243,7 @@ pip install -r requirements.txt
 
 <h3>How to collect and validate dataset</h3>
 For this and the following steps you need to have a PC version of CTR; we suggest running the game with a 4:3 resolution ratio.
-To start creating your own dataset, change the output folder path in _collect\_data.py_ and run it. The script will start recording your gameplay and store the clips.
+To start creating your own dataset, change the output folder path in *collect_data.py* and run it. The script will start recording your gameplay and store the clips.
 
 Here is an example of user D, driving through coco park track in normal mode (file label=N):
 ```python
@@ -261,7 +261,7 @@ python merge_training_data.py
 ```
 
 <h3>How to train the model</h3>
-To train the model, simply use _train\_model.py_. We suggest to keep the hyperparameters untouched, since they have shown good results. 
+To train the model, simply use *train_model.py*. We suggest to keep the hyperparameters untouched, since they have shown good results. 
 The script automatically takes care of splitting the dataset into train and validation; change VAL_PERC to use a different proportion between the two sets.
 
 
@@ -274,7 +274,7 @@ python train_model.py
 
 
 <h3>How to run the model</h3>
-To run the model, use _test\_model.py_. The default values will load Inception model, but you can also pass your own customized model.
+To run the model, use *test_model.py*. The default values will load Inception model, but you can also pass your own customized model.
 
 ```python
 python test_model.py
