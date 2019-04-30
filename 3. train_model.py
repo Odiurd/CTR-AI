@@ -1,6 +1,8 @@
 import numpy as np
 from models import nvidia
 from models import googlenet
+from random import shuffle
+import math
 
 WIDTH = 160 
 HEIGHT = 90 
@@ -18,8 +20,7 @@ PREV_MODEL = "ctr-nvidia-prev.model"
 #PREV_MODEL = "ctr-googlenet-prev.model"
 LOAD_MODEL = False
 
-train_loc = "E:/Users/Megaport/Documents/Data/CTR-AI/training_data/preprocessed/training_data_merge_trainset.npy"
-test_loc = "E:/Users/Megaport/Documents/Data/CTR-AI/training_data/preprocessed/training_data_merge_valset.npy"
+datafile = "E:/Users/Megaport/Documents/Data/CTR-AI/training_data/preprocessed/training_data_merge.npy"
 
 save_loc = "E:/Users/Megaport/Documents/Data/CTR-AI/models/"
 
@@ -29,10 +30,13 @@ model = nvidia(WIDTH, HEIGHT, LR, output=3, model_name=MODEL_NAME)
 if LOAD_MODEL:
     model.load(PREV_MODEL)
     print('### LOADED PREVIOUS MODEL ###')
-          
-          
-train = np.load(train_loc)
-test = np.load(test_loc)
+
+# Split into train and test/validation set
+data = np.load(datafile)
+shuffle(data)
+val_size = math.floor(len(data) * VAL_PERC)
+train = data[:-val_size]
+test = data[-val_size:]
 
 X = np.array([i[0] for i in train]).reshape(-1, WIDTH, HEIGHT, 3)
 Y = [i[1] for i in train]
@@ -41,7 +45,7 @@ test_x = np.array([i[0] for i in test]).reshape(-1, WIDTH, HEIGHT, 3)
 test_y = [i[1] for i in test]
 
 
-train_data = [] 
+data = [] 
 
 for e in range(EPOCHS):
     
