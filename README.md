@@ -229,20 +229,56 @@ In conclusion we are satisfied with the results and hope that you will test out 
 <a id="instr"></a>
 
 <h2>User guide</h2>
-In progress...
+Here we describe how to replicate the entire study; however, you can opt to use the already trained model by only following steps _"Dependencies"_ and _"How to run the model"_. 
+We only share the Inception model, due to the models weights size.
 
-<h3>Requirements</h3>
-In progress...
+Please, notice that many files have hard-coded folder locations since we used two different hard-drives to store code and all the data/models.
 
-<h3>How to create personalized dataset</h3>
-In progress...
+<h3>Dependencies</h3>
+Install all the necessary dependencies listed in the requirements file.
+
+```shell
+pip install -r requirements.txt
+```
+
+<h3>How to collect and validate dataset</h3>
+For this and the following steps you need to have a PC version of CTR; we suggest running the game with a 4:3 resolution ratio.
+To start creating your own dataset, change the output folder path in _collect\_data.py_ and run it. The script will start recording your gameplay and store the clips.
+
+Here is an example of user D, driving through coco park track in normal mode (file label=N):
+```python
+python collect_data.py D coco N 
+```
+
+After recording a session, we suggest to validate the data with the help of _visualize\_test\_data.py_:
+```python
+python visualize_test_data.py file_name
+```
+
+When you are satisfied about the amount of recordings collected, use _merge\_training\_data.py_ to gather all data into one file (remember to change the path).
+```python
+python merge_training_data.py
+```
 
 <h3>How to train the model</h3>
-In progress...
+To train the model, simply use _train\_model.py_. We suggest to keep the hyperparameters untouched, since they have shown good results. 
+The script automatically takes care of splitting the dataset into train and validation; change VAL_PERC to use a different proportion between the two sets.
+
+
+This file uses Nvidia model by default, but you will also find the Google's version commented out. As always, update the folder location with the correct path.
+
+```python
+python train_model.py
+```
+
+
 
 <h3>How to run the model</h3>
-In progress...
+To run the model, use _test\_model.py_. The default values will load Inception model, but you can also pass your own customized model.
 
+```python
+python test_model.py
+```
 
 <hr/>
 
