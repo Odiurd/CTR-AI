@@ -79,8 +79,8 @@ def applyChoice(prediction_choice):
     
 def main():     
     parser = argparse.ArgumentParser()
-    parser.add_argument("-m",type=str, default="ctr-googlenet.model-EPOCH_199", help="Model name (and location)")
-    #parser.add_argument("-m",type=str, default="ctr-nvidia.model-EPOCH_199", help="Model name (and location)")
+    parser.add_argument("-m",type=str, default="models/ctr-googlenet.model-EPOCH_199", help="Model name (and location)")
+    #parser.add_argument("-m",type=str, default="models/ctr-nvidia.model-EPOCH_199", help="Model name (and location)")
     parser.add_argument("-deb",action="store_true", default=False, help="Activates debug mode: prints choices made by the CNN model")
     parser.add_argument("-dis",action="store_true", default=False, help="Creates a cv2 window displaying the game")
     
